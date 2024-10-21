@@ -1,0 +1,132 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/MuhammadYaseen200/Cal.py/blob/main/Calapp_py.py\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Import necessary libraries\n",
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt\n",
+        "import streamlit as st\n",
+        "\n",
+        "# Function for basic calculations\n",
+        "def basic_calculator():\n",
+        "    st.write(\"## Basic Calculator\")\n",
+        "\n",
+        "    operation = st.selectbox(\"Choose an operation\", [\"+\", \"-\", \"*\", \"/\", \"** (power)\", \"sqrt (square root)\"])\n",
+        "\n",
+        "    if operation == \"sqrt\":\n",
+        "        num = st.number_input(\"Enter number\", value=0.0)\n",
+        "        if st.button(\"Calculate\"):\n",
+        "            st.write(f\"Result: {np.sqrt(num)}\")\n",
+        "    else:\n",
+        "        num1 = st.number_input(\"Enter first number\", value=0.0)\n",
+        "        num2 = st.number_input(\"Enter second number\", value=0.0)\n",
+        "        if st.button(\"Calculate\"):\n",
+        "            if operation == \"+\":\n",
+        "                st.write(f\"Result: {num1 + num2}\")\n",
+        "            elif operation == \"-\":\n",
+        "                st.write(f\"Result: {num1 - num2}\")\n",
+        "            elif operation == \"*\":\n",
+        "                st.write(f\"Result: {num1 * num2}\")\n",
+        "            elif operation == \"/\":\n",
+        "                st.write(f\"Result: {num1 / num2}\")\n",
+        "            elif operation == \"** (power)\":\n",
+        "                st.write(f\"Result: {num1 ** num2}\")\n",
+        "\n",
+        "# Function for graphical calculations\n",
+        "def graphical_calculator():\n",
+        "    st.write(\"## Graphical Calculator\")\n",
+        "\n",
+        "    graph_type = st.selectbox(\"Choose graph type\", [\"line\", \"parabola\", \"sine\", \"cosine\"])\n",
+        "\n",
+        "    x = np.linspace(-10, 10, 100)\n",
+        "\n",
+        "    if graph_type == \"line\":\n",
+        "        m = st.number_input(\"Enter slope (m)\", value=1.0)\n",
+        "        b = st.number_input(\"Enter intercept (b)\", value=0.0)\n",
+        "        if st.button(\"Plot Line\"):\n",
+        "            y = m * x + b\n",
+        "            plot_graph(x, y, f'y = {m}x + {b}')\n",
+        "\n",
+        "    elif graph_type == \"parabola\":\n",
+        "        a = st.number_input(\"Enter coefficient a\", value=1.0)\n",
+        "        b = st.number_input(\"Enter coefficient b\", value=0.0)\n",
+        "        c = st.number_input(\"Enter constant c\", value=0.0)\n",
+        "        if st.button(\"Plot Parabola\"):\n",
+        "            y = a * x**2 + b * x + c\n",
+        "            plot_graph(x, y, f'y = {a}x² + {b}x + {c}')\n",
+        "\n",
+        "    elif graph_type == \"sine\":\n",
+        "        if st.button(\"Plot Sine\"):\n",
+        "            y = np.sin(x)\n",
+        "            plot_graph(x, y, 'y = sin(x)')\n",
+        "\n",
+        "    elif graph_type == \"cosine\":\n",
+        "        if st.button(\"Plot Cosine\"):\n",
+        "            y = np.cos(x)\n",
+        "            plot_graph(x, y, 'y = cos(x)')\n",
+        "\n",
+        "# Helper function to plot the graph\n",
+        "def plot_graph(x, y, title):\n",
+        "    fig, ax = plt.subplots()\n",
+        "    ax.plot(x, y, label=title)\n",
+        "    ax.axhline(0, color='black',linewidth=1)\n",
+        "    ax.axvline(0, color='black',linewidth=1)\n",
+        "    ax.set_title(title)\n",
+        "    ax.set_xlabel('x')\n",
+        "    ax.set_ylabel('y')\n",
+        "    ax.grid(True)\n",
+        "    ax.legend()\n",
+        "    st.pyplot(fig)\n",
+        "\n",
+        "# Streamlit app interface\n",
+        "def main():\n",
+        "    st.title(\"Scientific Calculator and Graph Plotter\")\n",
+        "\n",
+        "    # Menu for calculator types\n",
+        "    choice = st.sidebar.selectbox(\"Select Calculator Type\", [\"Basic Calculator\", \"Graphical Calculator\"])\n",
+        "\n",
+        "    # Show selected calculator\n",
+        "    if choice == \"Basic Calculator\":\n",
+        "        basic_calculator()\n",
+        "    elif choice == \"Graphical Calculator\":\n",
+        "        graphical_calculator()\n",
+        "\n",
+        "# Run the Streamlit app\n",
+        "if __name__ == '__main__':\n",
+        "    main()"
+      ],
+      "metadata": {
+        "id": "z7ZERBsnlDxE"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyP2sUhhO6OvAvgXbcRVTfTt",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
