@@ -109,7 +109,6 @@
       "metadata": {
         "id": "z7ZERBsnlDxE"
       },
-      "execution_count": null,
       "outputs": []
     }
   ],
